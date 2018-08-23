@@ -23,7 +23,6 @@ def daysnum(year,month,days):
             days=days+1
     return days
 
-
 y1,m1,d1=input('请输入第一个日期：').strip().split()
 y2,m2,d2=input('请输入第二个日期：').strip().split()
 y1,m1,d1,y2,m2,d2=int(y1),int(m1),int(d1),int(y2),int(m2),int(d2)
