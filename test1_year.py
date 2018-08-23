@@ -2,9 +2,9 @@
 
 def my_rnpd(year):
     if (year%4==0 and year%100!=0)or year%400==0:
-        return true
+        return True
     else:
-        return false
+        return False
     
 def yearnum(year):
     numyear=0
