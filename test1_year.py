@@ -1,5 +1,11 @@
 #-*- coding: utf-8 -*-
-from runnianpd import my_rnpd   #导入闰年判定函数
+
+def my_rnpd(year):
+    if (year%4==0 and year%100!=0)or year%400==0:
+        return true
+    else:
+        return false
+    
 def yearnum(year):
     numyear=0
     while year>0:
