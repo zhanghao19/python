@@ -48,7 +48,8 @@ class MyBank:
 
         finally:
             self.conn.commit()      #提交修改
-
+    
+    # 用户登录
     def sign_in(self,id_card,passwd):
 
         try:
@@ -88,7 +89,8 @@ class MyBank:
 
         finally:
             self.conn.commit ()  # 提交修改
-
+    
+    #修改密码
     def change_passwd(self,id_card,new_passwd,old_passwd):
         try:
             while True:
@@ -137,6 +139,7 @@ def md5(passwd):
     m.update(a)
     return m.hexdigest()
 
+# 主要服务系统
 def service():
     print('------------欢迎进入银行系统------------')
     while True:
@@ -164,6 +167,8 @@ def service():
         else:
             print('感谢您的使用，再见！')
             break
+            
+# 登录后用户菜单
 def menu(id_card):
     while True:
         print ('------------菜单------------\n1.查询余额\n2.存款\n3.取款\n4.更改密码\n其他任意数字退出')
