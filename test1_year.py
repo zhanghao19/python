@@ -1,38 +1,34 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# 一年以后来优化此代码
 
-def my_rnpd(year):
-    if (year%4==0 and year%100!=0)or year%400==0:
-        return True
-    else:
-        return False
-    
-def yearnum(year):
-    numyear=0
-    while year>0:
-        year=year-1
-        if my_rnpd(year):
-            numyear=numyear+1
-        numyear=numyear+365
-    return numyear
 
-def mdnum(month):
-    mtuple=(31,28,31,30,31,30,31,31,30,31,30,31)    #每个月的天数
-    nummonth=0
-    if month>1:
-        for x in list(range(month-1))
-            nummonth=nummonth+mtuple[x]
-    return nummonth
-                
-def daysnum(year,month,days):    
-    if my_rnpd(year):
-        if month>2:
-            days=days+1
+def is_leap_year(year):
+    """闰年判定：指定一个年份，判断它是否是闰年"""
+    return (year % 4 == 0 and year % 100 != 0) or year % 400 == 0
+
+
+def get_year_num(year):
+    """计算这一年之前有多少天， 不包含这一年"""
+    days = 0
+    for i in range(1, year):
+        days += 366 if is_leap_year(i) else 365
     return days
 
-y1,m1,d1=input('请输入第一个日期：').strip().split()
-y2,m2,d2=input('请输入第二个日期：').strip().split()
-y1,m1,d1,y2,m2,d2=int(y1),int(m1),int(d1),int(y2),int(m2),int(d2)
-num1=yearnum(y1)+mdnum(m1)+daysnum(y1,m1,d1)
-num2=yearnum(y2)+mdnum(m2)+daysnum(y2,m2,d2)
-print(y1,'年至',y2,'年共有',num1-num2,'天')
 
+def get_month_num(month, year):
+    """计算这个月之前有多少天， 不包含这个月"""
+    each_month = (0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)  # 每个月的天数
+    days = 0
+    for m in range(1, month):
+        days += 29 if m == 2 and is_leap_year(year) else each_month[m]
+    return days
+
+
+def sum_days(year, month, day):
+    """计算日期之前有多少天"""
+    return get_year_num(year)+get_month_num(month, year)+day
+
+
+date1 = [1996, 8, 29]
+date2 = [2019, 11, 1]
+print(sum_days(*date2) - sum_days(*date1))
